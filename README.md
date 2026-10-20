@@ -1,4 +1,4 @@
-> This repository contains next-backend. Run its commands from the repository root. The sibling project has its own repository linked below.
+> This repository contains the backend application at its root. Clone both repositories into sibling folders named `course-studio-backend` and `course-studio-frontend`. The `cd` commands below assume you start in their parent folder; if already inside a repository, skip its `cd` command. Vercel Root Directory is `.` for each repository.
 
 # Course Studio — Online Course Service
 
@@ -44,7 +44,7 @@ No Atlas account or existing database is needed for a local demonstration. The d
 Terminal 1:
 
 ```sh
-cd next-backend
+cd course-studio-backend
 npm ci
 npm run demo
 ```
@@ -52,7 +52,7 @@ npm run demo
 Terminal 2:
 
 ```sh
-cd react-frontend
+cd course-studio-frontend
 npm ci
 npm run dev
 ```
@@ -117,13 +117,13 @@ The Vite proxy forwards `/api` to Next.js. Keep `VITE_API_URL=/api`: this keeps 
 ### Automated checks
 
 ```sh
-cd next-backend
+cd course-studio-backend
 npm run lint
 npm run build
 npm test
 npm audit --omit=dev
 
-cd ../react-frontend
+cd ../course-studio-frontend
 npm run lint
 npm run build
 npm audit
@@ -198,10 +198,10 @@ Never send ownership or student arrays: the API rejects protected fields. Status
 Both projects are deployed and connected to MongoDB Atlas. See [DEPLOYMENT.md](DEPLOYMENT.md) for the live configuration. The following steps describe reproducing the deployment.
 
 1. Create a MongoDB database and database user with read/write access to the application database. Configure network access for your deployment. Set `MONGODB_URI` and `MONGODB_DB` on the backend. Do not put them into frontend variables.
-2. Import the backend source into Vercel with root **`next-backend`**, framework **Next.js**, Node 24.x, install `npm ci`, build `npm run build`. Set `JWT_SECRET` to a new random secret of at least 32 characters and `FRONTEND_ORIGINS` to the exact frontend HTTPS origin (comma-separated origins are supported, no trailing slash/wildcards). Deploy and note its URL.
+2. Import the backend source into Vercel with root **`.`** in the backend repository, framework **Next.js**, Node 24.x, install `npm ci`, build `npm run build`. Set `JWT_SECRET` to a new random secret of at least 32 characters and `FRONTEND_ORIGINS` to the exact frontend HTTPS origin (comma-separated origins are supported, no trailing slash/wildcards). Deploy and note its URL.
 3. Run `npm run seed` from `next-backend/` with `.env.local` pointing to that same persistent MongoDB database. The seed is a one-time provisioning command, not an HTTP endpoint or build step.
 4. In `react-frontend/`, run `npm run configure:vercel -- https://YOUR-BACKEND.vercel.app`. This replaces the explicit placeholder in `vercel.json` with a real external API rewrite. Commit that file before deploying. Do not deploy the placeholder as if it were a working URL.
-5. Import frontend source with root **`react-frontend`**, framework **Vite**, Node 24.x, install `npm ci`, build `npm run build`, output **`dist`**. Set `VITE_API_URL=/api`. HashRouter requires no SPA catch-all rewrite; the API rewrite forwards to the backend project.
+5. Import frontend source with root **`.`** in the frontend repository, framework **Vite**, Node 24.x, install `npm ci`, build `npm run build`, output **`dist`**. Set `VITE_API_URL=/api`. HashRouter requires no SPA catch-all rewrite; the API rewrite forwards to the backend project.
 6. Ensure `FRONTEND_ORIGINS` on the backend includes the final frontend origin, then redeploy the backend after environment changes. Authentication uses Secure, HttpOnly, SameSite=Lax cookies in production; the frontend proxy keeps them first-party. For direct cross-origin clients, the default Lax cookie requires same-site domains; use the supplied proxy for separate Vercel domains.
 7. Verify login, reload, logout, course CRUD, search, enrollment and status changes on the public frontend. The public API page verifies only that Next.js is running, not database connectivity. The backend API must be reachable by the frontend rewrite; hosting authentication protection must not intercept those requests.
 8. Record both deployed URLs and repository links above. If the submission requires separate repositories, publish each directory separately and copy this README into each. Keep secrets out of commits. Complete the required screen-recording submission separately.
