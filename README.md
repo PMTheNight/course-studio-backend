@@ -8,13 +8,12 @@ The original `next-backend/` and `react-frontend/` architecture, API paths, `Has
 
 ## Student information and submission
 
-- Student name: **Not supplied — fill before submission.**
-- Student ID: **Not supplied — fill before submission.**
+- Student name: **Phyo Min Khaing**
+- Student ID: **6715185**
 - Backend source repository: https://github.com/PMTheNight/course-studio-backend
 - Frontend source repository: https://github.com/PMTheNight/course-studio-frontend
 - Backend deployed URL: https://course-studio-api.vercel.app
 - Frontend deployed URL: https://course-studio-web-lovat.vercel.app
-- Screen-recording link: **Not supplied.** The assignment requires an examination screen/camera recording. This implementation does not create or substitute for that recording.
 
 ## Test credentials
 
