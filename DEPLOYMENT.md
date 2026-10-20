@@ -20,4 +20,4 @@ Three students, three teachers and three sample courses were seeded. See README 
 - Public frontend and backend return 200 without Vercel authentication.
 - Local full suite: 13 tests passed, including concurrency; see VERIFICATION.md.
 
-Deployment used the official Vercel CLI. Git repositories have not been published or connected for automatic deployments. Future source edits require another CLI deployment or a Git integration. Student name/ID, source repository links and the required examination recording remain submission tasks.
+Deployment used the official Vercel CLI. Source repositories: https://github.com/PMTheNight/course-studio-backend and https://github.com/PMTheNight/course-studio-frontend. Automatic deployment integration has not been configured. Future source edits require another CLI deployment or a Git integration. Student name/ID and the required examination recording remain submission tasks.

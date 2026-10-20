@@ -42,7 +42,7 @@ Screenshots are delivered beside the source folder as `course-studio-preview.png
 ## Remaining limitations / external requirements
 
 1. **Deployed to Vercel and connected to Atlas.** Production frontend: https://course-studio-web-lovat.vercel.app; backend: https://course-studio-api.vercel.app. Production environment settings are configured privately. The frontend rewrite targets the real backend. Six accounts and three courses are seeded. Live Chrome sign-in, enrollment and session restoration were checked; live API checks are recorded in DEPLOYMENT.md.
-2. **No source repository was published or pushed.** Both deployable project directories, Git baseline, lockfiles and a source ZIP are delivered locally. Public repository links still need to be created for submission.
+2. **Source published in two repositories:** https://github.com/PMTheNight/course-studio-backend and https://github.com/PMTheNight/course-studio-frontend.
 3. **Student name, ID and examination recording are not supplied.** README identifies these fields explicitly. No examination recording is fabricated.
 4. **Backend development audit reports five high findings in one lint dependency chain:** `eslint-config-next` → `@next/eslint-plugin-next` → `fast-glob` → `micromatch` → `braces` (GHSA-vfj7-8cjw-p6xm). npm's offered fix downgrades the Next.js ESLint configuration to version 14, so that incompatible change was not applied. Runtime/production dependency audit is clean. Recheck for an upstream compatible lint-tool fix before wider distribution.
 5. Local filesystem notifications were unreliable in this environment. The disposable backend demo uses Webpack polling; Vite development polling is enabled. Production builds succeeded with the standard toolchains.
